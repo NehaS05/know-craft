@@ -11,15 +11,18 @@ import ChatPage from "@/pages/ChatPage";
 import AnalyticsPage from "@/pages/AnalyticsPage";
 import AuditPage from "@/pages/AuditPage";
 import KnowledgeBasePage from "@/pages/KnowledgeBasePage";
+import SettingsPage from "@/pages/SettingsPage";
 import NotFound from "@/pages/not-found";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "wouter";
 
-function Router({ userType, onNavigate, currentPage }: { userType: "internal" | "client", onNavigate: (page: string) => void, currentPage: string }) {
+function Router({ userType }: { userType: "internal" | "client" }) {
   return (
     <Switch>
       <Route path="/" component={() => <ChatPage userType={userType} />} />
       <Route path="/chat" component={() => <ChatPage userType={userType} />} />
       <Route path="/history" component={() => <ChatPage userType={userType} />} />
+      <Route path="/settings" component={SettingsPage} />
       {userType === "internal" && (
         <>
           <Route path="/analytics" component={AnalyticsPage} />
@@ -37,6 +40,12 @@ function App() {
   const [userType, setUserType] = useState<"internal" | "client">("client");
   const [userName, setUserName] = useState("");
   const [currentPage, setCurrentPage] = useState("chat");
+  const [location, setLocation] = useLocation();
+
+  useEffect(() => {
+    const path = location.replace('/', '') || 'chat';
+    setCurrentPage(path);
+  }, [location]);
 
   const handleLogin = (username: string, password: string, type: "internal" | "client") => {
     console.log("Login:", { username, password, type });
@@ -47,7 +56,7 @@ function App() {
 
   const handleNavigate = (page: string) => {
     setCurrentPage(page);
-    window.location.hash = `#/${page}`;
+    setLocation(`/${page}`);
   };
 
   const style = {
@@ -83,7 +92,7 @@ function App() {
                 <ThemeToggle />
               </header>
               <main className="flex-1 overflow-hidden">
-                <Router userType={userType} onNavigate={handleNavigate} currentPage={currentPage} />
+                <Router userType={userType} />
               </main>
             </div>
           </div>

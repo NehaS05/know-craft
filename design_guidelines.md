@@ -1,4 +1,4 @@
-# No-Craft AI Chatbot Design Guidelines
+# Know-Craft AI Chatbot Design Guidelines
 
 ## Design Approach
 

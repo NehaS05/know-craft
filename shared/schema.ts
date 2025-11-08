@@ -41,10 +41,13 @@ export const auditLogs = pgTable("audit_logs", {
 
 export const knowledgeBase = pgTable("knowledge_base", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  title: text("title").notNull(),
-  content: text("content").notNull(),
-  category: text("category").notNull(),
-  accessLevel: text("access_level").notNull(),
+  projectName: text("project_name").notNull(),
+  clientName: text("client_name").notNull(),
+  uploadedFileName: text("uploaded_file_name").notNull(),
+  title: text("title"),
+  content: text("content"),
+  category: text("category"),
+  accessLevel: text("access_level"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });

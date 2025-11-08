@@ -47,7 +47,7 @@ export default function AppSidebar({ userType, userName, currentPage, onNavigate
             NC
           </div>
           <div className="flex-1">
-            <h2 className="font-semibold text-sm">No-Craft AI</h2>
+            <h2 className="font-semibold text-sm">Know-Craft AI</h2>
             <p className="text-xs text-muted-foreground">Intelligent Assistant</p>
           </div>
         </div>

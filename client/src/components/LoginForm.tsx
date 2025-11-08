@@ -27,7 +27,7 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
           <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary text-primary-foreground mb-4">
             <Lock className="w-6 h-6" />
           </div>
-          <h1 className="text-2xl font-semibold mb-2">No-Craft AI Assistant</h1>
+          <h1 className="text-2xl font-semibold mb-2">Know-Craft AI Assistant</h1>
           <p className="text-sm text-muted-foreground">
             Secure intelligent query system for fintech
           </p>

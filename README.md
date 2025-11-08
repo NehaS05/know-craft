@@ -1,4 +1,4 @@
-# FintechBrain
+# KnowCraft
 
 A full-stack fintech application built with React, TypeScript, and Express.
 
