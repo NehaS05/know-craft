@@ -12,6 +12,7 @@ import AnalyticsPage from "@/pages/AnalyticsPage";
 import AuditPage from "@/pages/AuditPage";
 import KnowledgeBasePage from "@/pages/KnowledgeBasePage";
 import SettingsPage from "@/pages/SettingsPage";
+import UsersPage from "@/pages/UsersPage";
 import NotFound from "@/pages/not-found";
 import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
@@ -25,6 +26,7 @@ function Router({ userType }: { userType: "internal" | "client" }) {
       <Route path="/settings" component={SettingsPage} />
       {userType === "internal" && (
         <>
+          <Route path="/users" component={UsersPage} />
           <Route path="/analytics" component={AnalyticsPage} />
           <Route path="/audit" component={AuditPage} />
           <Route path="/knowledge" component={KnowledgeBasePage} />

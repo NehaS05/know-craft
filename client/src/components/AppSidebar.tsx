@@ -16,7 +16,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
-import { MessageSquare, History, Database, BarChart3, Settings, Lock } from "lucide-react";
+import { MessageSquare, History, Database, BarChart3, Settings, Lock, Users } from "lucide-react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 
@@ -39,6 +39,7 @@ export default function AppSidebar({ userType, userName, currentPage, onNavigate
     { title: "Chat", icon: MessageSquare, page: "chat" },
     { title: "History", icon: History, page: "history" },
     { title: "Knowledge Base", icon: Database, page: "knowledge" },
+    { title: "Users", icon: Users, page: "users" },
     { title: "Analytics", icon: BarChart3, page: "analytics" },
     { title: "Audit Logs", icon: Lock, page: "audit" },
     { title: "Settings", icon: Settings, page: "settings" },
