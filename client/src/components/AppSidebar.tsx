@@ -10,6 +10,12 @@ import {
   SidebarHeader,
   SidebarFooter,
 } from "@/components/ui/sidebar";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "@/components/ui/dropdown-menu";
 import { MessageSquare, History, Database, BarChart3, Settings, Lock } from "lucide-react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -19,9 +25,10 @@ interface AppSidebarProps {
   userName: string;
   currentPage: string;
   onNavigate: (page: string) => void;
+  onLogout?: () => void;
 }
 
-export default function AppSidebar({ userType, userName, currentPage, onNavigate }: AppSidebarProps) {
+export default function AppSidebar({ userType, userName, currentPage, onNavigate, onLogout }: AppSidebarProps) {
   const clientMenu = [
     { title: "Chat", icon: MessageSquare, page: "chat" },
     { title: "History", icon: History, page: "history" },
@@ -76,19 +83,33 @@ export default function AppSidebar({ userType, userName, currentPage, onNavigate
       </SidebarContent>
 
       <SidebarFooter className="p-4 border-t">
-        <div className="flex items-center gap-3">
-          <Avatar className="w-10 h-10">
-            <AvatarFallback className="bg-muted text-muted-foreground">
-              {userName.substring(0, 2).toUpperCase()}
-            </AvatarFallback>
-          </Avatar>
-          <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium truncate">{userName}</p>
-            <Badge variant={userType === "internal" ? "default" : "secondary"} className="text-xs mt-1">
-              {userType === "internal" ? "INTERNAL TEAM" : "CLIENT"}
-            </Badge>
-          </div>
-        </div>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <div className="flex items-center gap-3 cursor-pointer">
+              <Avatar className="w-10 h-10">
+                <AvatarFallback className="bg-muted text-muted-foreground">
+                  {userName.substring(0, 2).toUpperCase()}
+                </AvatarFallback>
+              </Avatar>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-medium truncate">{userName}</p>
+                <Badge variant={userType === "internal" ? "default" : "secondary"} className="text-xs mt-1">
+                  {userType === "internal" ? "INTERNAL TEAM" : "CLIENT"}
+                </Badge>
+              </div>
+            </div>
+          </DropdownMenuTrigger>
+
+          <DropdownMenuContent align="start">
+            <DropdownMenuItem
+              onClick={() => {
+                onLogout?.()
+              }}
+            >
+              Logout
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </SidebarFooter>
     </Sidebar>
   );

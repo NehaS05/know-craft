@@ -85,6 +85,11 @@ function App() {
               userName={userName}
               currentPage={currentPage}
               onNavigate={handleNavigate}
+              onLogout={() => {
+                setIsAuthenticated(false);
+                setUserName("");
+                setLocation('/');
+              }}
             />
             <div className="flex flex-col flex-1">
               <header className="flex items-center justify-between p-2 border-b">
